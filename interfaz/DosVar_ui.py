@@ -136,7 +136,7 @@ class Ui_DosVariables(object):
 
     def retranslateUi(self, DosVariables):
         _translate = QtCore.QCoreApplication.translate
-        DosVariables.setWindowTitle(_translate("DosVariables", "Dialog"))
+        DosVariables.setWindowTitle(_translate("DosVariables", "2x2"))
         self.label.setText(_translate("DosVariables", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; font-style:italic; color:#0000ff;\">x </span><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">+</span></p></body></html>"))
         self.label_2.setText(_translate("DosVariables", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; font-style:italic; color:#0000ff;\">y </span><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">=</span></p></body></html>"))
         self.label_4.setText(_translate("DosVariables", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; font-style:italic; color:#0000ff;\">x </span><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">+</span></p></body></html>"))
