@@ -37,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print(self.validar.prueba)
         print("2x2")
         self.validar.abrir_interfaz_2x2()
-        self.textsolucion.setText("DOBLE CLICK")
+        self.textsolucion.setText("DOBLE CLICKkkk")
         #self.textecuaciones.setText(str(matriz))
         #self.imprimir_ecuaciones()
         #self.validar.dialogo.cl

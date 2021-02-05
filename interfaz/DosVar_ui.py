@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtGui  import QDoubleValidator
 
 class Ui_DosVariables(object):
     def setupUi(self, DosVariables):
@@ -99,33 +99,39 @@ class Ui_DosVariables(object):
         self.gridLayout.setObjectName("gridLayout")
         self.x1 = QtWidgets.QLineEdit(DosVariables)
         self.x1.setObjectName("x1")
+        self.x1.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.x1, 0, 0, 1, 1)
         self.label = QtWidgets.QLabel(DosVariables)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
         self.y1 = QtWidgets.QLineEdit(DosVariables)
         self.y1.setObjectName("y1")
+        self.y1.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.y1, 0, 2, 1, 1)
         self.label_2 = QtWidgets.QLabel(DosVariables)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 0, 3, 1, 1)
         self.x = QtWidgets.QLineEdit(DosVariables)
         self.x.setObjectName("x")
+        self.x.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.x, 0, 4, 1, 1)
         self.x2 = QtWidgets.QLineEdit(DosVariables)
         self.x2.setObjectName("x2")
+        self.x2.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.x2, 1, 0, 1, 1)
         self.label_4 = QtWidgets.QLabel(DosVariables)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 1, 1, 1, 1)
         self.y2 = QtWidgets.QLineEdit(DosVariables)
         self.y2.setObjectName("y2")
+        self.y2.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.y2, 1, 2, 1, 1)
         self.label_3 = QtWidgets.QLabel(DosVariables)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 1, 3, 1, 1)
         self.y = QtWidgets.QLineEdit(DosVariables)
         self.y.setObjectName("y")
+        self.y.setValidator(QDoubleValidator())
         self.gridLayout.addWidget(self.y, 1, 4, 1, 1)
         self.calcular = QtWidgets.QPushButton(DosVariables)
         self.calcular.setObjectName("calcular")
