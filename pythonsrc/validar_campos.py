@@ -2,7 +2,7 @@ import sys,re
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QDialog
 from PyQt5 import QtWidgets
 
-from interfaz.Principal11_ui import *
+from interfaz.Principal11_ui import Ui_MainWindow
 from interfaz.DosVar_ui import Ui_DosVariables
 from interfaz.TresVar_ui import Ui_TresVariables
 from pythonsrc.graficar_2D import graficar_2d
@@ -213,7 +213,6 @@ class Validar(QDialog):
         stra="".join(map(str, self.lista2))
         self.dialogo.close()
         self.evento_cierre()
-        
         
         #self.gaussjordan.setCheckable(True)
     

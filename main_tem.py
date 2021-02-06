@@ -57,6 +57,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print("#Dimencion de matriz 3x3")
         self.validar.abrir_interfaz_3x3()
         self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
+        #self.graficar.setEnabled(True)
         self.graficar.setEnabled(True)
         self.graficar.clicked.connect(self.graficar_ecuaciones_3d)
 

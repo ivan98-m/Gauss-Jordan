@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
 def graficar_3d(n):
-    matriz=np.array(n).reshape(3,4)
+    matriz=np.array(n, dtype='float').reshape(3,4)
     b=matriz[:,3]
     A=np.delete(matriz, 3, axis=1)
     print(A)
@@ -17,11 +17,11 @@ def graficar_3d(n):
     X,Y=np.meshgrid(x,y)
 
     #Z1=(22-2*X-4*Y)/6
-    Z1=(n[3]-n[0]*X-n[1]*Y)/n[2]
+    Z1=(float(n[3])-float(n[0])*X-float(n[1])*Y)/float(n[2])
     #Z2=(27-3*X-8*Y)/5
-    Z2=(n[7]-n[4]*X-n[5]*Y)/n[6]
+    Z2=(float(n[7])-float(n[4])*X-float(n[5])*Y)/float(n[6])
     #Z3=(2+X-Y)/2
-    Z3=(n[11]-n[8]*X-n[9]*Y)/n[10]
+    Z3=(float(n[11])-float(n[8])*X-float(n[9])*Y)/float(n[10])
 
     fig=plt.figure()
     aux=fig.add_subplot(111,projection='3d')
