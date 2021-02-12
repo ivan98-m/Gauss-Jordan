@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets  import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QCloseEvent
+import matplotlib.pyplot as plt
 
 from interfaz.Principal11_ui import *
 from pythonsrc.validar_campos import Validar
@@ -25,9 +26,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def validar_dimension_matriz(self, text):
         if (text == "2x2"):
+            print(text)
             self.limpiar()
             self.abrir_2x2()
         elif (text == "3x3"):
+            print(text)
             self.limpiar()
             self.abrir_3x3()
         elif (text == "4x4"):
@@ -43,7 +46,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.imprimir_ecuaciones()
         #self.validar.dialogo.cl
         self.graficar.setEnabled(True)
-        self.graficar.clicked.connect(self.graficar_ecuaciones_2d)
+        self.graficar.clicked.connect(lambda: self.graficar_ecuaciones("2x2"))
         btn=self.metodo
         #self.textecuaciones.setEnabled(True)
         #ecuaciones="2 + 4 = 8 \n5 - 6 = 9"
@@ -59,7 +62,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
         #self.graficar.setEnabled(True)
         self.graficar.setEnabled(True)
-        self.graficar.clicked.connect(self.graficar_ecuaciones_3d)
+        self.graficar.clicked.connect(lambda: self.graficar_ecuaciones("3x3"))
+
+    def graficar_ecuaciones(self, text):
+        if text == "2x2":
+            print("es <<<<2x2")
+            plt.close("all")
+            print("valores mandados para graficar 2")
+            for i in self.validar.lista2:
+                print(i)
+            graficar_2d(self.validar.lista2)
+        elif text == "3x3":
+            print("es zzz 3x3")
+            plt.close("all")
+            print("valores mandados para graficar 3")
+            for i in self.validar.lista2:
+                print(i)
+            graficar_3d(self.validar.lista2)
 
     def abrir_4x4(self):
         self.graficar.setEnabled(False)
@@ -75,14 +94,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         stra="".join(map(str, self.validar.lista2))
         self.textecuaciones.setText(stra)
 
-    def graficar_ecuaciones_2d(self):
-        print("valores mandados para graficar")
+    def graficar_ecuaciones_dosd(self):
+        plt.close("all")
+        print("valores mandados para graficar 2")
         for i in self.validar.lista2:
             print(i)
         graficar_2d(self.validar.lista2)
 
-    def graficar_ecuaciones_3d(self):
-        print("valores mandados para graficar")
+    def graficar_ecuaciones_tresd(self):
+        plt.close("all")
+        print("valores mandados para graficar 3")
         for i in self.validar.lista2:
             print(i)
         graficar_3d(self.validar.lista2)

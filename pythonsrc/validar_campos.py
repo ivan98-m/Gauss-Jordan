@@ -14,7 +14,9 @@ class Validar(QDialog):
         super(Validar, self).__init__()
         self.matriz = [[]]
         self.lista2 = []
+        self.lista3 = []
         self.dimencion=""
+	# eevento_cierre para imprimir las ecuaciones     	
         self.evento_cierre=evento_cierre
     
     def abrir_interfaz_2x2(self):
@@ -188,6 +190,7 @@ class Validar(QDialog):
         for i in self.lista2:
             print(i)
         if self.dimencion == "2x2":
+            print("se guardan valores 2x2")
             self.lista2.append(self.ui_dos.x1.text())
             self.lista2.append(self.ui_dos.y1.text())
             self.lista2.append(self.ui_dos.x.text())
@@ -195,6 +198,7 @@ class Validar(QDialog):
             self.lista2.append(self.ui_dos.y2.text())
             self.lista2.append(self.ui_dos.y.text())
         elif self.dimencion == "3x3":
+            print("se guardan valores 3x3")
             self.lista2.append(self.ui_tres.x1.text())
             self.lista2.append(self.ui_tres.y1.text())
             self.lista2.append(self.ui_tres.z1.text())
@@ -210,7 +214,7 @@ class Validar(QDialog):
         #matriz=np.array(self.lista2).reshape(3,2)
         #self.matriz=matriz
         #print(self.matriz)
-        stra="".join(map(str, self.lista2))
+        #stra="".join(map(str, self.lista2))
         self.dialogo.close()
         self.evento_cierre()
         

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def graficar_2d(n):
-    print("SI ESTAMOS EN LA GRAFICA")
+    print("SI ESTAMOS EN LA GRAFICA 2x2")
     plt.clf()
 
     x = range(-10, 10)
@@ -17,6 +17,18 @@ def graficar_2d(n):
     plt.plot(x, [ecua1(i,n) for i in x], label=x1)
     plt.plot(x, [ecua2(i,n) for i in x], label=x2)
 
+    #Punto de interseccion
+    solucion = interseccion(x,n)
+    parSolucion = ("(" + str(solucion[0]) + ", " + str(solucion[1]) + ")")
+    plt.plot(solucion[0], solucion[1], marker="o", color="blue", label=parSolucion)
+    plt.text(solucion[0] + 1, solucion[1] + 1, parSolucion, size=9, rotation=0,
+         ha="center", va="center",
+         bbox=dict(boxstyle="round",
+                   ec=(1., 0.5, 0.5),
+                   fc=(1., 0.9, 0.8),
+                   )
+         )
+    #-----------------------------
     plt.legend(loc="upper left")
     #plt.axis(ymin=0)
 
@@ -38,3 +50,11 @@ def ecua2(x, n):
     y2=float(n[4])
     yr=float(n[5])
     return (-((x2)*x)+(yr))/(y2)
+
+def interseccion(x, n):
+    valoresEjeX = list(x)
+    for i in valoresEjeX:
+        x = ecua1(i, n)
+        y = ecua2(i, n)
+        if x == y:
+            return [i, y]
