@@ -8,6 +8,7 @@ from interfaz.Principal11_ui import *
 from pythonsrc.validar_campos import Validar
 from pythonsrc.graficar_2D import graficar_2d
 from pythonsrc.graficar_3D import graficar_3d
+from pythonsrc.imprimir import imprimir_txt_ecuaciones
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -18,6 +19,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.gaussjordan.clicked.connect(lambda:self.seleccion(self.gaussjordan))#envia el nombre del boton selccionado
         #self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
         #self.abrir_2x2()
+        self.otrometodo.setEnabled(False)
     
     def seleccion(self, nom):
         self.metodo = nom.text()
@@ -46,7 +48,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.imprimir_ecuaciones()
         #self.validar.dialogo.cl
         self.graficar.setEnabled(True)
-        self.graficar.clicked.connect(lambda: self.graficar_ecuaciones("2x2"))
+        self.graficar.clicked.connect(self.graficar_ecuaciones_dosd)
         btn=self.metodo
         #self.textecuaciones.setEnabled(True)
         #ecuaciones="2 + 4 = 8 \n5 - 6 = 9"
@@ -62,7 +64,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
         #self.graficar.setEnabled(True)
         self.graficar.setEnabled(True)
-        self.graficar.clicked.connect(lambda: self.graficar_ecuaciones("3x3"))
+        self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
 
     def graficar_ecuaciones(self, text):
         if text == "2x2":
@@ -85,28 +87,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print("#Dimencion de matriz 4x4")
 
     def imprimir_ecuaciones(self):
-        cad=""
-        for i in self.validar.lista2:
-            if i == self.validar.lista2[2] or i == self.validar.lista2[5]:
-                cad +=" = "+ i
-            else: 
-                cad +=i+" + "
-        stra="".join(map(str, self.validar.lista2))
-        self.textecuaciones.setText(stra)
+        txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
+        self.textecuaciones.setText(txt_ecuaciones)
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")
         print("valores mandados para graficar 2")
-        for i in self.validar.lista2:
-            print(i)
-        graficar_2d(self.validar.lista2)
+        if len(self.validar.lista2) !=0:
+            for i in self.validar.lista2:
+                print(i)
+            graficar_2d(self.validar.lista2)
+        else:
+            QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
 
     def graficar_ecuaciones_tresd(self):
         plt.close("all")
         print("valores mandados para graficar 3")
-        for i in self.validar.lista2:
-            print(i)
-        graficar_3d(self.validar.lista2)
+        if len(self.validar.lista2) !=0:
+            for i in self.validar.lista2:
+                print(i)
+            graficar_3d(self.validar.lista2)
+        else:
+            QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)   
 
     def limpiar(self):
         self.textecuaciones.clear()

@@ -14,7 +14,7 @@ class Validar(QDialog):
         super(Validar, self).__init__()
         self.matriz = [[]]
         self.lista2 = []
-        self.lista3 = []
+        #self.lista3 = []
         self.dimencion=""
 	# eevento_cierre para imprimir las ecuaciones     	
         self.evento_cierre=evento_cierre
