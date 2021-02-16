@@ -92,7 +92,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")
-        print("valores mandados para graficar 2")
+        print("valores mandados para graficar 2d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
                 print(i)
@@ -102,7 +102,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def graficar_ecuaciones_tresd(self):
         plt.close("all")
-        print("valores mandados para graficar 3")
+        print("valores mandados para graficar 3d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
                 print(i)
