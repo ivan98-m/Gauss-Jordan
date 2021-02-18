@@ -4,9 +4,13 @@ from PyQt5.QtWidgets  import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QCloseEvent
 from gauusj import gaussJordan2, lista_inicial
+import matplotlib.pyplot as plt
+
 from interfaz.Principal11_ui import *
 from pythonsrc.validar_campos import Validar
 from pythonsrc.graficar_2D import graficar_2d
+from pythonsrc.graficar_3D import graficar_3d
+from pythonsrc.imprimir import imprimir_txt_ecuaciones
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -17,44 +21,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.gaussjordan.clicked.connect(lambda:self.seleccion(self.gaussjordan))#envia el nombre del boton selccionado
         #self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
         #self.abrir_2x2()
-    
-    def gaussJordan2(matriz, vector):
-    
-        
-        a=np.array(matriz,float)
-        print("MATRIZ DE COEFICIENTES INICIAL")
-        print(a)
-        b=np.array(vector,float)
-        print("VECTOR DE RESULTADO INICIAL")
-        print(b)
-        
-        n=len(b)
-        print("NUMERO DE INCOGNITAS: "+str(n))
-        
-        
-        for k in range (n):
-            
-            if(np.fabs(a[k,k]) < 1.0e-12):
-                for i in range(k+1,n):
-                    if (np.fabs(a[i,k]) > np.fabs(a[k,k])):
-                        for j in range(k,n):
-                            a[k,j],a[i,j]=a[i,j],a[k,j]
-                        b[k],b[i]=b[i],b[k]
-                        break
-            
-            #Division  de la fila pivote
-            pivote=a[k,k]
-            for j in range(k,n):
-                a[k,j] /=pivote
-            b[k] /=pivote
-            #Ciclo de elimacion
-            for i in range(n):
-                if(i==k or a[i,k] == 0): continue #verifico que el elemento no sea de la diagonal o sea 0
-                factor=a[i,k]
-                for j in range(k,n):
-                    a[i,j] -=factor*a[k,j]
-                b[i]-=factor*b[k]
-        return b,a
+        self.otrometodo.setEnabled(False)
     
     def seleccion(self, nom):
         self.metodo = nom.text()
@@ -63,27 +30,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def validar_dimension_matriz(self, text):
         if (text == "2x2"):
-            #self.validar.lista2
+            print(text)
+            self.limpiar()
             self.abrir_2x2()
         elif (text == "3x3"):
+            print(text)
+            self.limpiar()
             self.abrir_3x3()
         elif (text == "4x4"):
-            print("4x4")
+            self.abrir_4x4()
         elif (text == "5x5"):
             print("5x5")
 
     def abrir_2x2(self):
-        print(self.validar.prueba)
         print("2x2")
         self.validar.abrir_interfaz_2x2()
         self.textsolucion.setText("DOBLE CLICKkkk")
         #self.textecuaciones.setText(str(matriz))
         #self.imprimir_ecuaciones()
         #self.validar.dialogo.cl
-
-        btn=self.metodo
         self.graficar.setEnabled(True)
-        self.graficar.clicked.connect(self.graficar_ecuaciones_2d)
+        self.graficar.clicked.connect(self.graficar_ecuaciones_dosd)
+        btn=self.metodo
         #self.textecuaciones.setEnabled(True)
         #ecuaciones="2 + 4 = 8 \n5 - 6 = 9"
         #self.textecuaciones.setPlainText(ecuaciones)
@@ -108,7 +76,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textsolucion.setText("Aqui va la solucion del sistema")
         """ self.validar.lista2.append(223);
         print (self.validar.lista2) """
-       
         #self.textproceso.setText((self.validar.lista2))
         X,A,txtsol=lista_inicial(self.validar.lista2)
         self.textproceso.setText(txtsol)
@@ -131,6 +98,69 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     
     
+
+
+    def abrir_3x3(self):
+        print("#Dimencion de matriz 3x3")
+        self.validar.abrir_interfaz_3x3()
+        self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
+        #self.graficar.setEnabled(True)
+        self.graficar.setEnabled(True)
+        self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
+
+    def graficar_ecuaciones(self, text):
+        if text == "2x2":
+            print("es <<<<2x2")
+            plt.close("all")
+            print("valores mandados para graficar 2")
+            for i in self.validar.lista2:
+                print(i)
+            graficar_2d(self.validar.lista2)
+        elif text == "3x3":
+            print("es zzz 3x3")
+            plt.close("all")
+            print("valores mandados para graficar 3")
+            for i in self.validar.lista2:
+                print(i)
+            graficar_3d(self.validar.lista2)
+
+    def abrir_4x4(self):
+        self.graficar.setEnabled(False)
+        print("#Dimencion de matriz 4x4")
+
+    def imprimir_ecuaciones(self):
+        txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
+        self.textecuaciones.setText(txt_ecuaciones)
+        X,A,txtsol=lista_inicial(self.validar.lista2)
+        self.textproceso.setText(txtsol)
+        self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
+                                    "Solucion: "+"\n"+str(X))
+        
+
+    def graficar_ecuaciones_dosd(self):
+        plt.close("all")
+        print("valores mandados para graficar 2d")
+        if len(self.validar.lista2) !=0:
+            for i in self.validar.lista2:
+                print(i)
+            graficar_2d(self.validar.lista2)
+        else:
+            QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
+
+    def graficar_ecuaciones_tresd(self):
+        plt.close("all")
+        print("valores mandados para graficar 3d")
+        if len(self.validar.lista2) !=0:
+            for i in self.validar.lista2:
+                print(i)
+            graficar_3d(self.validar.lista2)
+        else:
+            QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)   
+
+    def limpiar(self):
+        self.textecuaciones.clear()
+        self.textsolucion.clear()
+
     
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

@@ -2,8 +2,6 @@ from pylab import *
 import matplotlib.pyplot as plt
 import numpy as np
  
-
-
 def lista2():
     lista=[1,-1,1,3,2,11]
     graficar_2D(lista)

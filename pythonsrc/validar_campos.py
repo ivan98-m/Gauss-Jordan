@@ -2,7 +2,7 @@ import sys,re
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QDialog
 from PyQt5 import QtWidgets
 
-from interfaz.Principal11_ui import *
+from interfaz.Principal11_ui import Ui_MainWindow
 from interfaz.DosVar_ui import Ui_DosVariables
 from interfaz.TresVar_ui import Ui_TresVariables
 from pythonsrc.graficar_2D import graficar_2d
@@ -14,24 +14,19 @@ class Validar(QDialog):
         super(Validar, self).__init__()
         self.matriz = [[]]
         self.lista2 = []
-        self.prueba="siii"
+        #self.lista3 = []
+        self.dimencion=""
+	# eevento_cierre para imprimir las ecuaciones     	
         self.evento_cierre=evento_cierre
-        #QtWidgets.QMainWindow.__init__(self)# para intasia ventana principal 
-        #self.setupUi(self)
-        #Ui_MainWindow.textecuaciones
-
-    def valores_interfaz(self):
-        self.abrir_interfaz_2x2()
-        #print(self.matriz)
-
+    
     def abrir_interfaz_2x2(self):
         self.dialogo=QDialog()
         self.ui_dos=Ui_DosVariables()
         self.ui_dos.setupUi(self.dialogo)
         self.dialogo.show()
+        self.dimencion="2x2"
 
         self.tam= self.ui_dos
-
         self.ui_dos.x1.textChanged.connect(self.validar_x1)
         self.ui_dos.y1.textChanged.connect(self.validar_y1)
         self.ui_dos.x.textChanged.connect(self.validar_x)
@@ -39,7 +34,30 @@ class Validar(QDialog):
         self.ui_dos.y2.textChanged.connect(self.validar_y2)
         self.ui_dos.y.textChanged.connect(self.validar_y)
        
-        self.ui_dos.calcular.clicked.connect(self.validad_formulario)
+        self.ui_dos.calcular.clicked.connect(self.validad_formulario2)
+
+    def abrir_interfaz_3x3(self):
+        self.dialogo=QDialog()
+        self.ui_tres=Ui_TresVariables()
+        self.ui_tres.setupUi(self.dialogo)
+        self.dialogo.show()
+        self.dimencion="3x3"
+
+        self.tam= self.ui_tres
+        self.ui_tres.x1.textChanged.connect(self.validar_x1)
+        self.ui_tres.y1.textChanged.connect(self.validar_y1)
+        self.ui_tres.z1.textChanged.connect(self.validar_z1)
+        self.ui_tres.x.textChanged.connect(self.validar_x)
+        self.ui_tres.x2.textChanged.connect(self.validar_x2)
+        self.ui_tres.y2.textChanged.connect(self.validar_y2)
+        self.ui_tres.z2.textChanged.connect(self.validar_z2)
+        self.ui_tres.y.textChanged.connect(self.validar_y)
+        self.ui_tres.x3.textChanged.connect(self.validar_x3)
+        self.ui_tres.y3.textChanged.connect(self.validar_y3)
+        self.ui_tres.z3.textChanged.connect(self.validar_z3)
+        self.ui_tres.z.textChanged.connect(self.validar_z)
+       
+        self.ui_tres.calcular.clicked.connect(self.validar_formulario3)
 
     def validar_x1(self):
         x1=self.tam.x1.text()
@@ -57,6 +75,15 @@ class Validar(QDialog):
             return False
         else:
             self.tam.y1.setStyleSheet("border: 1px solid green;")
+            return True
+
+    def validar_z1(self):
+        z1=self.tam.z1.text()
+        if z1 == "":
+            self.tam.z1.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.z1.setStyleSheet("border: 1px solid green;")
             return True
 
     def validar_x(self):
@@ -86,6 +113,15 @@ class Validar(QDialog):
             self.tam.y2.setStyleSheet("border: 1px solid green;")
             return True
 
+    def validar_z2(self):
+        z2=self.tam.z2.text()
+        if z2 == "":
+            self.tam.z2.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.z2.setStyleSheet("border: 1px solid green;")
+            return True
+
     def validar_y(self):
         y=self.tam.y.text()
         if y == "":
@@ -94,11 +130,56 @@ class Validar(QDialog):
         else:
             self.tam.y.setStyleSheet("border: 1px solid green;")
             return True
+
+    def validar_x3(self):
+        x3=self.tam.x3.text()
+        if x3 == "":
+            self.tam.x3.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.x3.setStyleSheet("border: 1px solid green;")
+            return True
+
+    def validar_y3(self):
+        y3=self.tam.y3.text()
+        if y3 == "":
+            self.tam.y3.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.y3.setStyleSheet("border: 1px solid green;")
+            return True
+
+    def validar_z3(self):
+        z3=self.tam.z3.text()
+        if z3 == "":
+            self.tam.z3.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.z3.setStyleSheet("border: 1px solid green;")
+            return True
+
+    def validar_z(self):
+        z=self.tam.z.text()
+        if z == "":
+            self.tam.z.setStyleSheet("border: 1px solid red;")
+            return False
+        else:
+            self.tam.z.setStyleSheet("border: 1px solid green;")
+            return True
     
-    def validad_formulario(self):
+    def validad_formulario2(self):
         if (self.validar_x1() and self.validar_y1() and self.validar_x() and 
             self.validar_x2() and self.validar_y2() and self.validar_y()):
             #QMessageBox.information(self, "Formulario correcto", "Validacion correcta",QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            self.capturavalores()
+        else:
+            QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
+        
+    def validar_formulario3(self):
+        if (self.validar_x1() and self.validar_y1() and self.validar_z1() and self.validar_x() and 
+            self.validar_x2() and self.validar_y2() and self.validar_z2() and self.validar_y() and
+            self.validar_x3() and self.validar_y3() and self.validar_z3() and self.validar_z()):
+            QMessageBox.information(self, "Formulario correcto", "Validacion correcta", QMessageBox.Discard)
             self.capturavalores()
         else:
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
@@ -108,20 +189,34 @@ class Validar(QDialog):
         print("valores borrados---->")
         for i in self.lista2:
             print(i)
-        self.lista2.append(self.ui_dos.x1.text())
-        self.lista2.append(self.ui_dos.y1.text())
-        self.lista2.append(self.ui_dos.x.text())
-        self.lista2.append(self.ui_dos.x2.text())
-        self.lista2.append(self.ui_dos.y2.text())
-        self.lista2.append(self.ui_dos.y.text())
-
+        if self.dimencion == "2x2":
+            print("se guardan valores 2x2")
+            self.lista2.append(self.ui_dos.x1.text())
+            self.lista2.append(self.ui_dos.y1.text())
+            self.lista2.append(self.ui_dos.x.text())
+            self.lista2.append(self.ui_dos.x2.text())
+            self.lista2.append(self.ui_dos.y2.text())
+            self.lista2.append(self.ui_dos.y.text())
+        elif self.dimencion == "3x3":
+            print("se guardan valores 3x3")
+            self.lista2.append(self.ui_tres.x1.text())
+            self.lista2.append(self.ui_tres.y1.text())
+            self.lista2.append(self.ui_tres.z1.text())
+            self.lista2.append(self.ui_tres.x.text())
+            self.lista2.append(self.ui_tres.x2.text())
+            self.lista2.append(self.ui_tres.y2.text())
+            self.lista2.append(self.ui_tres.z2.text())
+            self.lista2.append(self.ui_tres.y.text())
+            self.lista2.append(self.ui_tres.x3.text())
+            self.lista2.append(self.ui_tres.y3.text())
+            self.lista2.append(self.ui_tres.z3.text())
+            self.lista2.append(self.ui_tres.z.text())
         #matriz=np.array(self.lista2).reshape(3,2)
         #self.matriz=matriz
         #print(self.matriz)
-        stra="".join(map(str, self.lista2))
+        #stra="".join(map(str, self.lista2))
         self.dialogo.close()
         self.evento_cierre()
-        
         
         #self.gaussjordan.setCheckable(True)
     
