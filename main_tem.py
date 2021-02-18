@@ -42,6 +42,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def abrir_2x2(self):
         print("2x2")
+        #self.graficar = QPushButton('Clear', self)
         self.validar.abrir_interfaz_2x2()
         self.textsolucion.setText("DOBLE CLICKkkk")
         #self.textecuaciones.setText(str(matriz))
