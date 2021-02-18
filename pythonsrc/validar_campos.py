@@ -98,13 +98,13 @@ class Validar(QDialog):
     def validad_formulario(self):
         if (self.validar_x1() and self.validar_y1() and self.validar_x() and 
             self.validar_x2() and self.validar_y2() and self.validar_y()):
-            QMessageBox.information(self, "Formulario correcto", "Validacion correcta", QMessageBox.Discard)
+            #QMessageBox.information(self, "Formulario correcto", "Validacion correcta",QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             self.capturavalores()
         else:
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
 
     def capturavalores(self):
-        self.lista2.clear()
+        del self.lista2[:]
         print("valores borrados---->")
         for i in self.lista2:
             print(i)
