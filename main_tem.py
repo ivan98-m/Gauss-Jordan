@@ -30,20 +30,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def validar_dimension_matriz(self, text):
         if (text == "2x2"):
-            print(text)
             self.limpiar()
             self.abrir_2x2()
         elif (text == "3x3"):
-            print(text)
             self.limpiar()
             self.abrir_3x3()
         elif (text == "4x4"):
+            self.limpiar()
             self.abrir_4x4()
         elif (text == "5x5"):
-            print("5x5")
+            self.limpiar()
+            self.abrir_5x5()
 
     def abrir_2x2(self):
         print("2x2")
+        #self.graficar = QPushButton('Clear', self)
         self.validar.abrir_interfaz_2x2()
         self.textsolucion.setText("DOBLE CLICKkkk")
         #self.textecuaciones.setText(str(matriz))
@@ -108,25 +109,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.graficar.setEnabled(True)
         self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
 
-    def graficar_ecuaciones(self, text):
-        if text == "2x2":
-            print("es <<<<2x2")
-            plt.close("all")
-            print("valores mandados para graficar 2")
-            for i in self.validar.lista2:
-                print(i)
-            graficar_2d(self.validar.lista2)
-        elif text == "3x3":
-            print("es zzz 3x3")
-            plt.close("all")
-            print("valores mandados para graficar 3")
-            for i in self.validar.lista2:
-                print(i)
-            graficar_3d(self.validar.lista2)
-
     def abrir_4x4(self):
-        self.graficar.setEnabled(False)
         print("#Dimencion de matriz 4x4")
+        self.graficar.setEnabled(False)
+        self.validar.abrir_interfaz_4x4()
+        self.textsolucion.setText("SOLUCION MATIRCES 4 INCOG")
+       
+    def abrir_5x5(self):
+        print("#Dimencion de matriz 5x5")
+        self.graficar.setEnabled(False)
+        self.validar.abrir_interfaz_5x5()
+        self.textsolucion.setText("SOLUCION MATIRCES 5 INCOG")
 
     def imprimir_ecuaciones(self):
         txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
@@ -136,6 +129,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
                                     "Solucion: "+"\n"+str(X))
         
+        cadena="-".join(map(str,self.validar.lista2))
+        self.textecuaciones.setText(cadena)
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")

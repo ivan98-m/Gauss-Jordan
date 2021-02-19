@@ -21,6 +21,7 @@ def graficar_2d(n):
 
     #Punto de interseccion
     solucion = interseccion(x,n)
+    print(solucion)
     if solucion is not None:
         parSolucion = ("(" + str(solucion[0]) + ", " + str(solucion[1]) + ")")
         plt.plot(solucion[0], solucion[1], marker="o", color="blue", label=parSolucion)
@@ -40,7 +41,7 @@ def graficar_2d(n):
     plt.xlim(-11, 11)
     plt.ylim(-11, 11)
 
-    show()
+    plt.show()
 
 
 def ecua1(x, n):
@@ -61,7 +62,10 @@ def interseccion(x, n):
     val=list(map(float,valoresEjeX))
     valoresx= val[:]
     for i in valoresx:
-        x = ecua1(i, n)
-        y = ecua2(i, n)
+        x = round(ecua1(i, n),3)
+        print("x--->" + str(x))
+        y = round(ecua2(i, n),3)
+        print("y--->" + str(y))
         if x == y:
+            print("x= "+ str(x)+ "--- y "+ str(y))
             return [i, y]

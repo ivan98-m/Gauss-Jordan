@@ -60,4 +60,5 @@ def graficar_3d(n):
     aux.text2D(-0.30, 1.0, Ecuacion2, color="#8FB9CF", fontweight="heavy", transform=aux.transAxes)
     aux.text2D(-0.30, 0.95, Ecuacion3, color="#E89992", fontweight="heavy", transform=aux.transAxes)
 
+
     plt.show()
