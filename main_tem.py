@@ -34,9 +34,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.limpiar()
             self.abrir_3x3()
         elif (text == "4x4"):
+            self.limpiar()
             self.abrir_4x4()
         elif (text == "5x5"):
-            print("5x5")
+            self.limpiar()
+            self.abrir_5x5()
 
     def abrir_2x2(self):
         print("2x2")
@@ -66,14 +68,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
 
     def abrir_4x4(self):
-        self.graficar.setEnabled(False)
-        self.textecuaciones.setText("SOLUCION MATIRCES 4 INCOG")
-
         print("#Dimencion de matriz 4x4")
+        self.graficar.setEnabled(False)
+        self.validar.abrir_interfaz_4x4()
+        self.textsolucion.setText("SOLUCION MATIRCES 4 INCOG")
+       
+    def abrir_5x5(self):
+        print("#Dimencion de matriz 5x5")
+        self.graficar.setEnabled(False)
+        self.validar.abrir_interfaz_5x5()
+        self.textsolucion.setText("SOLUCION MATIRCES 5 INCOG")
 
     def imprimir_ecuaciones(self):
         txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
         self.textecuaciones.setText(txt_ecuaciones)
+        cadena="-".join(map(str,self.validar.lista2))
+        self.textecuaciones.setText(cadena)
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")

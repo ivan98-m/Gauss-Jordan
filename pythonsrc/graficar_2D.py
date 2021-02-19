@@ -62,9 +62,9 @@ def interseccion(x, n):
     val=list(map(float,valoresEjeX))
     valoresx= val[:]
     for i in valoresx:
-        x = ecua1(i, n)
+        x = round(ecua1(i, n),3)
         print("x--->" + str(x))
-        y = ecua2(i, n)
+        y = round(ecua2(i, n),3)
         print("y--->" + str(y))
         if x == y:
             print("x= "+ str(x)+ "--- y "+ str(y))
