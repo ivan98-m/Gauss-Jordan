@@ -28,11 +28,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def validar_dimension_matriz(self, text):
         if (text == "2x2"):
-            print(text)
             self.limpiar()
             self.abrir_2x2()
         elif (text == "3x3"):
-            print(text)
             self.limpiar()
             self.abrir_3x3()
         elif (text == "4x4"):
@@ -67,24 +65,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.graficar.setEnabled(True)
         self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
 
-    def graficar_ecuaciones(self, text):
-        if text == "2x2":
-            print("es <<<<2x2")
-            plt.close("all")
-            print("valores mandados para graficar 2")
-            for i in self.validar.lista2:
-                print(i)
-            graficar_2d(self.validar.lista2)
-        elif text == "3x3":
-            print("es zzz 3x3")
-            plt.close("all")
-            print("valores mandados para graficar 3")
-            for i in self.validar.lista2:
-                print(i)
-            graficar_3d(self.validar.lista2)
-
     def abrir_4x4(self):
         self.graficar.setEnabled(False)
+        self.textecuaciones.setText("SOLUCION MATIRCES 4 INCOG")
+
         print("#Dimencion de matriz 4x4")
 
     def imprimir_ecuaciones(self):
