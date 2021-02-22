@@ -21,7 +21,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.gaussjordan.clicked.connect(lambda:self.seleccion(self.gaussjordan))#envia el nombre del boton selccionado
         #self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
         #self.abrir_2x2()
-        self.otrometodo.setEnabled(False)
+        #self.otrometodo.setEnabled(False)
+        
+        self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
     
     def seleccion(self, nom):
         self.metodo = nom.text()
@@ -61,27 +63,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         elif(btn == "Otro metodo"):
             print(btn+" seleccionado")
             #self.gaussJordan2()
-        
-    def imprimir_ecuaciones(self):
-        cad=""
-        
-        for i in self.validar.lista2:
-        
-            if i == self.validar.lista2[2] or i == self.validar.lista2[5]:
-                cad +=" = "+ i
-                
-            else: 
-                cad +=i+" + "
-        stra="".join(map(str, self.validar.lista2))
-        self.textecuaciones.setText(stra)
-        self.textsolucion.setText("Aqui va la solucion del sistema")
-        """ self.validar.lista2.append(223);
-        print (self.validar.lista2) """
-        #self.textproceso.setText((self.validar.lista2))
-        X,A,txtsol=lista_inicial(self.validar.lista2)
-        self.textproceso.setText(txtsol)
-        self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
-                                    "Solucion: "+"\n"+str(X))
+            
     def graficar_ecuaciones_2d(self):
         print("valores mandados para graficar")
         for i in self.validar.lista2:
@@ -124,13 +106,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def imprimir_ecuaciones(self):
         txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
         self.textecuaciones.setText(txt_ecuaciones)
-        X,A,txtsol=lista_inicial(self.validar.lista2)
-        self.textproceso.setText(txtsol)
-        self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
-                                    "Solucion: "+"\n"+str(X))
-        
-        cadena="-".join(map(str,self.validar.lista2))
-        self.textecuaciones.setText(cadena)
+        print(self.metodo)
+        if(self.metodo=="Gauss_Jordan"):
+            X,A,txtsol=lista_inicial(self.validar.lista2,True)
+            self.textproceso.setText(txtsol)
+            self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
+                                        "Solucion: "+"\n"+str(X))
+        else:
+            X,A,txtsol=lista_inicial(self.validar.lista2,False)
+            self.textproceso.setText(txtsol)
+            self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
+                                        "Solucion: "+"\n"+str(X))
+            """ cadena="-".join(map(str,self.validar.lista2))
+            self.textecuaciones.setText(cadena) """
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")

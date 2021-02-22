@@ -6,7 +6,7 @@ import numpy as np
 def pedirVal(orden):
     for i in range(orden):
         lista.append(int(input("Valor :"+str(i+1)+" ")))
-def lista_inicial(lista):
+def lista_inicial(lista,metodo):#Si esta en true es Gauus Jordan
     longitud=len(lista)
     if(longitud==6):
         matriz=np.array(lista, dtype='float').reshape(2,3)
@@ -23,10 +23,16 @@ def lista_inicial(lista):
         else:
             #print(np.linalg.det(a))
             print ("Aqui va la sol")
-            X,A,sol=gaussJordan2(a,b)
-            """ print(X)
-            print(A) """
-            return X,A,sol
+            if(metodo==True):
+                X,A,sol=gaussJordan2(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
+            else:
+                X,A,sol=gaussJordan(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
             #print(gaussJordan(a,b))
     elif(longitud==12):
         matriz=np.array(lista, dtype='float').reshape(3,4)
@@ -41,9 +47,16 @@ def lista_inicial(lista):
             print ("No hay solucion el sistema es inconsitente")
             return 0,0,"No hay solucion el sistema es inconsitente"
         else:
-            print ("Aqui va la sol")
-            X,A,sol=gaussJordan2(a,b)
-            return X,A,sol
+            if(metodo==True):
+                X,A,sol=gaussJordan2(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
+            else:
+                X,A,sol=gaussJordan(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
     elif (longitud==20):
         matriz=np.array(lista, dtype='float').reshape(4,5)
         #matriz=np.reshape(lista,(2,3))
@@ -57,9 +70,16 @@ def lista_inicial(lista):
             print ("No hay solucion el sistema es inconsitente")
             return 0,0,"No hay solucion el sistema es inconsitente"
         else:
-            print ("Aqui va la sol")
-            X,A,sol=gaussJordan2(a,b)
-            return X,A,sol
+            if(metodo==True):
+                X,A,sol=gaussJordan2(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
+            else:
+                X,A,sol=gaussJordan(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
     elif (longitud==30):
         matriz=np.array(lista, dtype='float').reshape(5,6)
         #matriz=np.reshape(lista,(2,3))
@@ -73,10 +93,16 @@ def lista_inicial(lista):
             print ("No hay solucion el sistema es inconsitente")
             return 0,0,"No hay solucion el sistema es inconsitente"
         else:
-            
-            print ("Aqui va la sol")
-            X,A,sol=gaussJordan2(a,b)
-            return X,A,sol
+            if(metodo==True):
+                X,A,sol=gaussJordan2(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
+            else:
+                X,A,sol=gaussJordan(a,b)
+                """ print(X)
+                print(A) """
+                return X,A,sol
         
 def gaussJordan2(matriz, vector):
     solucion=""
@@ -151,10 +177,13 @@ def gaussJordan2(matriz, vector):
             b[i]-=factor*b[k]
     return b,a,solucion
 def gaussJordan(matriz, vector):
-
+    solucion=""
     matrix = np.array(matriz, dtype=np.float64)
     vector = np.array(vector, dtype=np.float64)
 
+    print("MATRIZ DE COEFICIENTES INICIAL")
+    solucion+="MATRIZ DE COEFICIENTES INICIAL\n"+str(matrix)
+    
     
     m = len(vector)# numero de incognitas en el sistema
     x = np.zeros(m)# Creo un arreglo para el resultado inicialmente con 0s
@@ -180,9 +209,9 @@ def gaussJordan(matriz, vector):
             print(str(matrix[r,c])+"  xc"+str(x[c]))
         x[r]=(vector[r]-suma)/matrix[r, r]
 
-    return x
+    return x,matrix,solucion
 
-lista_inicial([0,1,3,4,5,6])
+#lista_inicial([0,1,3,4,5,6])
 """ orden=input("Orden del sistema :")
 lista=[]
 if(orden == "2"):
