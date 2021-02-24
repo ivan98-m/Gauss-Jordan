@@ -40,9 +40,9 @@ def graficar_2d(n):
     plt.axvline(0, color="black")
     plt.xlim(-11, 11)
     plt.ylim(-11, 11)
-
+    
     plt.show()
-
+    plt.close()
 
 def ecua1(x, n):
     x1=float(n[0])

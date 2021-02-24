@@ -184,23 +184,34 @@ def gaussJordan(matriz, vector):
     print("MATRIZ DE COEFICIENTES INICIAL")
     solucion+="MATRIZ DE COEFICIENTES INICIAL\n"+str(matrix)
     
+    solucion+="\nVECTOR DE COEFICIENTES INICIAL\n"+str(vector)
     
     m = len(vector)# numero de incognitas en el sistema
+    solucion+="\nNumero de incognitas :"+str(m)+"\n"
     x = np.zeros(m)# Creo un arreglo para el resultado inicialmente con 0s
 
     for k in range(0, m):
         for r in range(k+1, m):
             factor=(matrix[r,k]/matrix[k,k])
-            print("Factor"+str(factor))
+            print("Factor :"+str(factor))
+            
+            solucion+="\nFACTOR DE ELIMINACION: "+str(factor)
             print(matrix[r,k],matrix[k,k])
+            
             vector[r]=vector[r]-(factor*vector[k])
+            
             print("Vector[r] "+str(vector[r]))
             for c in range(0,m):
                 matrix[r,c]=matrix[r,c]-(factor*matrix[k,c])
+                solucion+="\n Matriz["+str(r)+","+str(c)+"]-="+str(factor)+"*"+str(matrix[k,c])
                 print("Matriz r,c "+str(matrix[r,c]))
     print(matrix)
+    solucion+="\n NUEVA MATRIZ LUEGO DE LAS OPERACIONES \n"+str(matrix)
+    solucion+="\nNuevo vector solucion: \n"+str(vector)
+    
     
     x[m-1]=vector[m-1]/matrix[m-1, m-1]
+    solucion+="\nSustitucion Hacia atras X[m-1] :\n"+str(x[m-1])
     print(x[m-1])
     for r in range(m-2, -1, -1):#Hago un ciclo en reversa, para eliminar todos los terminos a la derecha
         suma = 0                # de la diagonal
@@ -208,7 +219,8 @@ def gaussJordan(matriz, vector):
             suma=suma+matrix[r,c]*x[c]
             print(str(matrix[r,c])+"  xc"+str(x[c]))
         x[r]=(vector[r]-suma)/matrix[r, r]
-
+        solucion+="\n"+str(x[r])
+    solucion+="\nAl final de la sustitucion: \n"+str(x)
     return x,matrix,solucion
 
 #lista_inicial([0,1,3,4,5,6])

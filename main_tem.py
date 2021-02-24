@@ -5,7 +5,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QCloseEvent
 from gauusj import gaussJordan2, lista_inicial
 import matplotlib.pyplot as plt
-
+from PyQt5.QtCore import pyqtSlot
+from datetime import datetime
 from interfaz.Principal11_ui import *
 from pythonsrc.validar_campos import Validar
 from pythonsrc.graficar_2D import graficar_2d
@@ -22,9 +23,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
         #self.abrir_2x2()
         #self.otrometodo.setEnabled(False)
-        
+        self.guardar.setEnabled(True)
+
+        self.guardar.clicked.connect(self.on_click)
         self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
-    
+    @pyqtSlot()
+    def on_click(self):#Slot creado para el boton
+        fecha=datetime.now()
+        file=open("Procedimiento con\n"+str(self.metodo)+str(" ")+str(fecha),"w")
+        file.write(self.textproceso.toPlainText())
+        file.close()
     def seleccion(self, nom):
         self.metodo = nom.text()
         print(self.metodo)
@@ -121,7 +129,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textecuaciones.setText(cadena) """
 
     def graficar_ecuaciones_dosd(self):
-        plt.close("all")
         print("valores mandados para graficar 2d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
@@ -131,7 +138,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
 
     def graficar_ecuaciones_tresd(self):
-        plt.close("all")
         print("valores mandados para graficar 3d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
