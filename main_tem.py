@@ -3,7 +3,6 @@ import numpy as np
 from PyQt5.QtWidgets  import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QCloseEvent
-from gauusj import gaussJordan2, lista_inicial
 import matplotlib.pyplot as plt
 
 from interfaz.Principal11_ui import *
@@ -11,18 +10,20 @@ from pythonsrc.validar_campos import Validar
 from pythonsrc.graficar_2D import graficar_2d
 from pythonsrc.graficar_3D import graficar_3d
 from pythonsrc.imprimir import imprimir_txt_ecuaciones
+from pythonsrc.gauusj import gaussJordan2, lista_inicial
+from pythonsrc.comprobar_ecua import Comprobar
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
-        self.validar=Validar(self.imprimir_ecuaciones)
+        self.validar=Validar(self.imprimir)
         self.lista= self.validar.lista2
+        self.prueba = Comprobar()
         QtWidgets.QMainWindow.__init__(self)
         self.setupUi(self)
         self.gaussjordan.clicked.connect(lambda:self.seleccion(self.gaussjordan))#envia el nombre del boton selccionado
         #self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
         #self.abrir_2x2()
         #self.otrometodo.setEnabled(False)
-        
         self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
     
     def seleccion(self, nom):
@@ -72,19 +73,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def abrir_3x3(self):
         print("#Dimencion de matriz 3x3")
-        
-    
-
-    """ def pedirVal(orden):
-        for i in range(orden):
-            lista.append(int(input("Valor :"+str(i+1)+" "))) """
-        
-    
-    
-
-
-    def abrir_3x3(self):
-        print("#Dimencion de matriz 3x3")
         self.validar.abrir_interfaz_3x3()
         self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
         #self.graficar.setEnabled(True)
@@ -103,7 +91,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.validar.abrir_interfaz_5x5()
         self.textsolucion.setText("SOLUCION MATIRCES 5 INCOG")
 
-    def imprimir_ecuaciones(self):
+    def imprimir(self):
         txt_ecuaciones=imprimir_txt_ecuaciones(self.validar.lista2)
         self.textecuaciones.setText(txt_ecuaciones)
         print(self.metodo)
@@ -112,6 +100,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textproceso.setText(txtsol)
             self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
                                         "Solucion: "+"\n"+str(X))
+            self.comprobar.setEnabled(True)
+            self.comprobar.clicked.connect(lambda:self.comprobar_soluciones(X))
         else:
             X,A,txtsol=lista_inicial(self.validar.lista2,False)
             self.textproceso.setText(txtsol)
@@ -119,6 +109,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                         "Solucion: "+"\n"+str(X))
             """ cadena="-".join(map(str,self.validar.lista2))
             self.textecuaciones.setText(cadena) """
+
+    def comprobar_soluciones(self, vec_solucion):
+        self.prueba.abrir_interfaz_comprobar(self.validar.lista2, vec_solucion)
 
     def graficar_ecuaciones_dosd(self):
         plt.close("all")

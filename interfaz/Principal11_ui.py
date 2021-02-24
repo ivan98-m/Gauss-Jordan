@@ -40,7 +40,7 @@ class Ui_MainWindow(object):
         self.textproceso.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.textproceso.setReadOnly(True)
         self.textproceso.setObjectName("textproceso")
-        self.gridLayout.addWidget(self.textproceso, 1, 1, 9, 1)
+        self.gridLayout.addWidget(self.textproceso, 1, 1, 10, 1)
         self.otrometodo = QtWidgets.QRadioButton(self.centralwidget)
         self.otrometodo.setObjectName("otrometodo")
         self.gridLayout.addWidget(self.otrometodo, 2, 0, 1, 1)
@@ -77,10 +77,14 @@ class Ui_MainWindow(object):
         self.textsolucion.setReadOnly(True)
         self.textsolucion.setObjectName("textsolucion")
         self.gridLayout.addWidget(self.textsolucion, 9, 0, 2, 1)
+        self.comprobar = QtWidgets.QPushButton(self.centralwidget)
+        self.comprobar.setEnabled(False)
+        self.comprobar.setObjectName("comprobar")
+        self.gridLayout.addWidget(self.comprobar, 11, 0, 1, 1)
         self.guardar = QtWidgets.QPushButton(self.centralwidget)
         self.guardar.setEnabled(False)
         self.guardar.setObjectName("guardar")
-        self.gridLayout.addWidget(self.guardar, 10, 1, 1, 1)
+        self.gridLayout.addWidget(self.guardar, 11, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -134,6 +138,8 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.guardar.setToolTip(_translate("MainWindow", "Guarde el proceso obtenido"))
         self.guardar.setText(_translate("MainWindow", "Guardar"))
+        self.comprobar.setToolTip(_translate("MainWindow", "compruebe la solucion obtenida"))
+        self.comprobar.setText(_translate("MainWindow", "Comprobar"))
 
 
 if __name__ == "__main__":

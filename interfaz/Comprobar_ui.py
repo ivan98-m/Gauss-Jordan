@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(306, 138)
-        Dialog.setStyleSheet("QWidget\n"
+class Ui_Comprobar(object):
+    def setupUi(self, Comprobar):
+        Comprobar.setObjectName("Comprobar")
+        Comprobar.resize(407, 127)
+        Comprobar.setStyleSheet("QWidget\n"
 "{\n"
 "    background-color: #e4e4e4;\n"
 "    color: #000;\n"
@@ -137,36 +137,34 @@ class Ui_Dialog(object):
 "\n"
 "\n"
 "")
-        self.gridLayout = QtWidgets.QGridLayout(Dialog)
-        self.gridLayout.setObjectName("gridLayout")
-        self.resultado = QtWidgets.QLineEdit(Dialog)
+        self.resultado = QtWidgets.QLineEdit(Comprobar)
+        self.resultado.setGeometry(QtCore.QRect(320, 70, 71, 24))
         self.resultado.setReadOnly(True)
         self.resultado.setObjectName("resultado")
-        self.gridLayout.addWidget(self.resultado, 1, 2, 1, 1)
-        self.ecuacion = QtWidgets.QComboBox(Dialog)
+        self.ecuacion = QtWidgets.QComboBox(Comprobar)
+        self.ecuacion.setGeometry(QtCore.QRect(215, 30, 181, 22))
         self.ecuacion.setObjectName("ecuacion")
         self.ecuacion.addItem("")
         self.ecuacion.addItem("")
-        self.gridLayout.addWidget(self.ecuacion, 0, 1, 1, 2)
-        self.operaciones = QtWidgets.QLineEdit(Dialog)
+        self.label = QtWidgets.QLabel(Comprobar)
+        self.label.setGeometry(QtCore.QRect(9, 30, 192, 16))
+        self.label.setObjectName("label")
+        self.operaciones = QtWidgets.QLineEdit(Comprobar)
+        self.operaciones.setGeometry(QtCore.QRect(9, 70, 281, 24))
         self.operaciones.setText("")
         self.operaciones.setReadOnly(True)
         self.operaciones.setObjectName("operaciones")
-        self.gridLayout.addWidget(self.operaciones, 1, 0, 1, 1)
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2 = QtWidgets.QLabel(Comprobar)
+        self.label_2.setGeometry(QtCore.QRect(300, 70, 16, 23))
         self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 1, 1, 1, 1)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(Comprobar)
+        QtCore.QMetaObject.connectSlotsByName(Comprobar)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, Comprobar):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Comprobar Ecuaciones"))
-        self.ecuacion.setItemText(0, _translate("Dialog", "Ecuacion 1"))
-        self.ecuacion.setItemText(1, _translate("Dialog", "Ecuacion 2"))
-        self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt;\">Seleccione ecuacion a comprobar</span></p></body></html>"))
-        self.label_2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:14pt;\">=</span></p></body></html>"))
+        Comprobar.setWindowTitle(_translate("Comprobar", "Comprobar Ecuaciones"))
+        self.ecuacion.setItemText(0, _translate("Comprobar", "Ecuacion 1"))
+        self.ecuacion.setItemText(1, _translate("Comprobar", "Ecuacion 2"))
+        self.label.setText(_translate("Comprobar", "<html><head/><body><p><span style=\" font-size:10pt;\">Seleccione ecuacion a comprobar</span></p></body></html>"))
+        self.label_2.setText(_translate("Comprobar", "<html><head/><body><p><span style=\" font-size:14pt;\">=</span></p></body></html>"))
