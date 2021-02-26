@@ -5,7 +5,6 @@ from PyQt5.QtGui import QCloseEvent, QIcon
 from PyQt5.QtCore import pyqtSlot
 import matplotlib.pyplot as plt
 #numpy
-
 from datetime import datetime
 from interfaz.Principal11_ui import *
 from pythonsrc.validar_campos import Validar
@@ -80,7 +79,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print("#Dimencion de matriz 3x3")
         self.validar.abrir_interfaz_3x3()
         #self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
-        #self.graficar.setEnabled(True)
         self.graficar.setEnabled(True)
         self.graficar.clicked.connect(self.graficar_ecuaciones_tresd)
 
@@ -125,7 +123,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def guardar_archivo(self, solucion):
         ventana = QFileDialog.Options()
         ventana |= QFileDialog.DontUseNativeDialog
-        ruta_nombre, _ = QFileDialog.getSaveFileName(self, "Guardar Archivo...", "", "Text documents (*.txt)")
+        ruta_nombre, _ = QFileDialog.getSaveFileName(self, "Guardar Archivo...", "", "Text documents (*.txt)", options=ventana)
 
         with open(ruta_nombre, 'wt') as f:
             fecha=datetime.now()
