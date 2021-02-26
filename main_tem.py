@@ -121,9 +121,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.prueba.abrir_interfaz_comprobar(self.validar.lista2, vec_solucion)
 
     def guardar_archivo(self, solucion):
-        ventana = QFileDialog.Options()
-        ventana |= QFileDialog.DontUseNativeDialog
-        ruta_nombre, _ = QFileDialog.getSaveFileName(self, "Guardar Archivo...", "", "Text documents (*.txt)", options=ventana)
+        ventanaqt = QFileDialog.Options()
+        ventanaqt |= QFileDialog.DontUseNativeDialog
+        ruta_nombre, _ = QFileDialog.getSaveFileName(self, "Guardar Archivo...", "", "Text documents (*.txt)", options=ventanaqt)
 
         with open(ruta_nombre, 'wt') as f:
             fecha=datetime.now()
