@@ -407,7 +407,7 @@ class Validar(QDialog):
     def validad_formulario2(self):
         if (self.validar_x1() and self.validar_y1() and self.validar_x() and 
             self.validar_x2() and self.validar_y2() and self.validar_y()):
-            QMessageBox.information(self, "Formulario correcto", "Validacion correcta",QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            QMessageBox.information(self, "Formulario correcto", "Validacion correcta", QMessageBox.Discard)
             self.capturavalores()
         else:
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
@@ -533,7 +533,6 @@ class Validar(QDialog):
         #stra="".join(map(str, self.lista2))
         self.dialogo.close()
         self.evento_cierre()
-        
         #self.gaussjordan.setCheckable(True)
     
         

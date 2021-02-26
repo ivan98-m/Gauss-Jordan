@@ -51,6 +51,17 @@ class Comprobar(QDialog):
             self.ecua2 = np.array(list_ecuaciones[5:9], dtype='float')
             self.ecua3 = np.array(list_ecuaciones[10:14], dtype='float')
             self.ecua4 = np.array(list_ecuaciones[15:19], dtype='float')
+        
+        if (len(list_ecuaciones) == 30):
+            print("5x5")
+            self.Ui_Comp.ecuacion.addItem("Ecuacion 3")
+            self.Ui_Comp.ecuacion.addItem("Ecuacion 4")
+            self.Ui_Comp.ecuacion.addItem("Ecuacion 5")
+            self.ecua1 = np.array(list_ecuaciones[:5], dtype='float')
+            self.ecua2 = np.array(list_ecuaciones[6:11], dtype='float')
+            self.ecua3 = np.array(list_ecuaciones[12:17], dtype='float')
+            self.ecua4 = np.array(list_ecuaciones[18:23], dtype='float')
+            self.ecua5 = np.array(list_ecuaciones[24:29], dtype='float')
 
         self.Ui_Comp.ecuacion.activated.connect(self.ecuacion)
         
@@ -89,28 +100,36 @@ class Comprobar(QDialog):
             self.resulado = np.sum(lista_multiplicacion)
             print(lista_multiplicacion)
             self.imprimir(l,"Ecuacion 4" )
+        
+        if (self.Ui_Comp.ecuacion.currentText() == "Ecuacion 5"):
+            print("ecuacion 5")
+            lista_multiplicacion=self.ecua5 * self.soluciones
+            l =len(lista_multiplicacion)
+            self.resulado = np.sum(lista_multiplicacion)
+            print(lista_multiplicacion)
+            self.imprimir(l,"Ecuacion 5" )
 
     def imprimir(self, l, ecua):
         if (l == 2 and ecua == "Ecuacion 1"):
-            cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str(self.soluciones[0])+")"+ " + "+
-            "("+ str(self.lista_ecuaciones[1]) + "*" + str(self.soluciones[1]) + ")")
+            cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[1]) + "*" + str((round(self.soluciones[1],2))) + ")")
         elif(l == 2 and ecua == "Ecuacion 2"):
-            cad=("("+ str(self.lista_ecuaciones[3]) + "*" + str(self.soluciones[0])+")"+ " + "+
-            "("+ str(self.lista_ecuaciones[4]) + "*" + str(self.soluciones[1])+ ")")
+            cad=("("+ str(self.lista_ecuaciones[3]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[4]) + "*" + str((round(self.soluciones[1],2)))+ ")")
 
         elif(l == 3 and ecua == "Ecuacion 1"):
-            cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str(self.soluciones[0])+")"+ " + "+
-            "("+ str(self.lista_ecuaciones[1]) + "*" + str(self.soluciones[1]) + ")" + " + "+
-            "("+ str(self.lista_ecuaciones[2]) + "*" + str(self.soluciones[2]) + ")")
+            cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[1]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[2]) + "*" + str((round(self.soluciones[2],2))) + ")")
         elif(l == 3 and ecua == "Ecuacion 2"):
-            cad=("("+ str(self.lista_ecuaciones[4]) + "*" + str(self.soluciones[0])+")"+ " + "+
-            "("+ str(self.lista_ecuaciones[5]) + "*" + str(self.soluciones[1]) + ")" + " + "+
-            "("+ str(self.lista_ecuaciones[6]) + "*" + str(self.soluciones[2]) + ")")
+            cad=("("+ str(self.lista_ecuaciones[4]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[5]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[6]) + "*" + str((round(self.soluciones[2],2))) + ")")
         elif(l == 3 and ecua == "Ecuacion 3"):
-            cad=("("+ str(self.lista_ecuaciones[8]) + "*" + str(self.soluciones[0])+")"+ " + "+
-            "("+ str(self.lista_ecuaciones[9]) + "*" + str(self.soluciones[1]) + ")" + " + "+
-            "("+ str(self.lista_ecuaciones[10]) + "*" + str(self.soluciones[2]) + ")")
-        
+            cad=("("+ str(self.lista_ecuaciones[8]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[9]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[10]) + "*" + str((round(self.soluciones[2],2))) + ")")
+                                                    
         elif(l == 4 and ecua == "Ecuacion 1"):
             cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
             "("+ str(self.lista_ecuaciones[1]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
@@ -131,8 +150,38 @@ class Comprobar(QDialog):
             "("+ str(self.lista_ecuaciones[16]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
             "("+ str(self.lista_ecuaciones[17]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
             "("+ str(self.lista_ecuaciones[18]) + "*" + str((round(self.soluciones[3],2))) + ")")
-
-
+        
+        elif(l == 5 and ecua == "Ecuacion 1"):
+            cad=("("+ str(self.lista_ecuaciones[0]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[1]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[2]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[3]) + "*" + str((round(self.soluciones[3],2))) + ")" + " + "+ 
+            "("+ str(self.lista_ecuaciones[4]) + "*" + str((round(self.soluciones[4],2))) + ")")
+        elif(l == 5 and ecua == "Ecuacion 2"):
+            cad=("("+ str(self.lista_ecuaciones[6]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[7]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[8]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[9]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[10]) + "*" + str((round(self.soluciones[3],2))) + ")")
+        elif(l == 5 and ecua == "Ecuacion 3"):
+            cad=("("+ str(self.lista_ecuaciones[12]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[13]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[14]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[15]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[16]) + "*" + str((round(self.soluciones[3],2))) + ")")
+        elif(l == 5 and ecua == "Ecuacion 4"):
+            cad=("("+ str(self.lista_ecuaciones[18]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[19]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[20]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[21]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[22]) + "*" + str((round(self.soluciones[3],2))) + ")")
+        elif(l == 5 and ecua == "Ecuacion 5"):
+            cad=("("+ str(self.lista_ecuaciones[24]) + "*" + str((round(self.soluciones[0],2)))+")"+ " + "+
+            "("+ str(self.lista_ecuaciones[25]) + "*" + str((round(self.soluciones[1],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[26]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[27]) + "*" + str((round(self.soluciones[2],2))) + ")" + " + "+
+            "("+ str(self.lista_ecuaciones[28]) + "*" + str((round(self.soluciones[3],2))) + ")")
+            
         self.Ui_Comp.operaciones.setText(cad)
         self.Ui_Comp.resultado.setText(str((round(self.resulado,2))))
 
