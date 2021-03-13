@@ -183,8 +183,4 @@ class Comprobar(QDialog):
             "("+ str(self.lista_ecuaciones[28]) + "*" + str((round(self.soluciones[3],2))) + ")")
             
         self.Ui_Comp.operaciones.setText(cad)
-        self.Ui_Comp.resultado.setText(str((round(self.resulado,2))))
-
-        
-      
-        
+        self.Ui_Comp.resultado.setText(str((round(self.resulado,2))))      

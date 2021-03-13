@@ -27,12 +27,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.abrir_2x2()
         #self.otrometodo.setEnabled(False)
         self.otrometodo.clicked.connect(lambda:self.seleccion(self.otrometodo))
-    @pyqtSlot()
+    """@pyqtSlot()
     def on_click(self):#Slot creado para el boton
         fecha=datetime.now()
         file=open("Procedimiento con\n"+str(self.metodo)+str(" ")+str(fecha),"w")
         file.write(self.textproceso.toPlainText())
-        file.close()
+        file.close()"""
         
     def seleccion(self, nom):
         self.metodo = nom.text()
@@ -99,7 +99,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         txt_ecuaciones=imprimir_ecuaciones(self.validar.lista2)
         self.textecuaciones.setText(txt_ecuaciones)
         print(self.metodo)
-        if(self.metodo=="Gauss_Jordan"):
+        if(self.metodo=="Gauss-Jordan"):
             X,A,txtsol=lista_inicial(self.validar.lista2,True)
             self.textproceso.setText(txtsol)
             sol=imprimir_soluciones(X)
@@ -111,10 +111,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             X,A,txtsol=lista_inicial(self.validar.lista2,False)
             self.textproceso.setText(txtsol)
-            self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"
-                                        "Solucion: "+"\n"+str(X))
-            """ cadena="-".join(map(str,self.validar.lista2))
-            self.textecuaciones.setText(cadena) """
+            sol=imprimir_soluciones(X)
+            print(sol)
+            self.textsolucion.setText(sol)
+            self.comprobar.setEnabled(True)
+            self.comprobar.clicked.connect(lambda:self.comprobar_soluciones(X))
+            #self.textsolucion.setText("Matriz de coeficientes"+"\n"+str(A)+"\n"+"Solucion: "+"\n"+str(X))
+            
         self.guardar.clicked.connect(lambda:self.guardar_archivo(sol))
 
     def comprobar_soluciones(self, vec_solucion):
@@ -125,13 +128,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ventanaqt |= QFileDialog.DontUseNativeDialog
         ruta_nombre, _ = QFileDialog.getSaveFileName(self, "Guardar Archivo...", "", "Text documents (*.txt)", options=ventanaqt)
 
-        with open(ruta_nombre, 'wt') as f:
-            fecha=datetime.now()
-            soluciones="\n"+"\n"+"SOLUCION DEL SISTEMA DE ECUACIONES: "+"\n"+solucion
-            cabecera ="Procedimiento con el metodo de: "+str(self.metodo)+" fecha: "+str(fecha)+"\n"+"\n"
-            f.write(cabecera+self.textproceso.toPlainText()+soluciones)
+        try:
+            with open(ruta_nombre, 'wt') as f:
+                fecha=datetime.now()
+                soluciones="\n"+"\n"+"SOLUCION DEL SISTEMA DE ECUACIONES: "+"\n"+solucion
+                cabecera ="Procedimiento con el metodo de: "+str(self.metodo)+" fecha: "+str(fecha)+"\n"+"\n"
+                f.write(cabecera+self.textproceso.toPlainText()+soluciones)
             
             QMessageBox.information(self, "Guardar archivo", "Archivo guardado", QMessageBox.Discard)
+        except:
+            QMessageBox.warning(self, "Guardar archivo", "Archivo no guardado", QMessageBox.Discard)
+
 
     def graficar_ecuaciones_dosd(self):
         print("valores mandados para graficar 2d")

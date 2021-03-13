@@ -88,5 +88,5 @@ def imprimir_soluciones(x):
     cont=0
     for i in lista_soluciones:
         cad += variables[cont] + " = " + str(i) +'\n'
-        cont = +1
+        cont = cont+1
     return cad

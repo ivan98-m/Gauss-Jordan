@@ -18,7 +18,7 @@ class Validar(QDialog):
         self.lista2 = []
         #self.lista3 = []
         self.dimencion=""
-	# eevento_cierre para imprimir las ecuaciones     	
+	    #evento_cierre para imprimir las ecuaciones     	
         self.evento_cierre=evento_cierre
     
     def abrir_interfaz_2x2(self):
@@ -349,7 +349,6 @@ class Validar(QDialog):
             self.tam.w.setStyleSheet("border: 1px solid green;")
             return True 
 #
-
     def validar_x5(self):
         x5=self.tam.x5.text()
         if x5 == "":
@@ -430,6 +429,7 @@ class Validar(QDialog):
             self.capturavalores()
         else:
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
+
 
     def validar_formulario5(self):
         if (self.validar_x1() and self.validar_y1() and self.validar_z1() and self.validar_w1() and self.validar_v1() and self.validar_x() and 
@@ -534,9 +534,3 @@ class Validar(QDialog):
         self.dialogo.close()
         self.evento_cierre()
         #self.gaussjordan.setCheckable(True)
-    
-        
-    
-
-
-        
