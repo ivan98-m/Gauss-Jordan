@@ -41,7 +41,7 @@ def graficar_2d(n):
     plt.xlim(-11, 11)
     plt.ylim(-11, 11)
     
-    plt.show()
+    show()
 
 def ecua1(x, n):
     x1=float(n[0])

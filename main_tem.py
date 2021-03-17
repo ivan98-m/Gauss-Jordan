@@ -57,10 +57,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.limpiar()
             self.abrir_5x5()
 
-    def abrir_2x2(self):
+    def abrir_2x2(self):        
         self.validar.lista2.clear()
-        print("2x2")
-        plt.close()
+        print("2x2")    
         self.validar.abrir_interfaz_2x2()
         #self.textsolucion.setText("DOBLE CLICKkkk")
         self.graficar.setEnabled(True)
@@ -73,9 +72,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print(btn+" seleccionado")
             #self.gaussJordan2()
 
-    def abrir_3x3(self):
-        self.validar.lista2.clear()
-        plt.close()
+    def abrir_3x3(self):       
+        self.validar.lista2.clear()       
         print("#Dimencion de matriz 3x3")
         self.validar.abrir_interfaz_3x3()
         #self.textsolucion.setText("SOLUCION 3 VAR 3 INCOG")
@@ -141,6 +139,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def graficar_ecuaciones_dosd(self):
+        plt.close()	    
         print("valores mandados para graficar 2d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
@@ -150,6 +149,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             QMessageBox.warning(self, "Formulario incorrecto", "Se deben llenar los campos", QMessageBox.Discard)
 
     def graficar_ecuaciones_tresd(self):
+        plt.close()	    
         print("valores mandados para graficar 3d")
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
