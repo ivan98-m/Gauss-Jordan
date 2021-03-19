@@ -133,6 +133,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if len(self.validar.lista2) !=0:
             for i in self.validar.lista2:
                 print(i)
+            
             graficar_2d(self.validar.lista2)
         else:
             QMessageBox.warning(self, "Formulario incorrecto", "validacion incorrecta", QMessageBox.Discard)
