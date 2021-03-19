@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(690, 503)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icon1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -37,10 +37,10 @@ class Ui_MainWindow(object):
         self.textproceso.setStyleSheet("QTextEdit{border:2px groove #242424;}\n"
 "")
         self.textproceso.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
-        self.textproceso.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        #self.textproceso.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.textproceso.setReadOnly(True)
         self.textproceso.setObjectName("textproceso")
-        self.gridLayout.addWidget(self.textproceso, 1, 1, 9, 1)
+        self.gridLayout.addWidget(self.textproceso, 1, 1, 10, 1)
         self.otrometodo = QtWidgets.QRadioButton(self.centralwidget)
         self.otrometodo.setObjectName("otrometodo")
         self.gridLayout.addWidget(self.otrometodo, 2, 0, 1, 1)
@@ -77,10 +77,14 @@ class Ui_MainWindow(object):
         self.textsolucion.setReadOnly(True)
         self.textsolucion.setObjectName("textsolucion")
         self.gridLayout.addWidget(self.textsolucion, 9, 0, 2, 1)
+        self.comprobar = QtWidgets.QPushButton(self.centralwidget)
+        self.comprobar.setEnabled(False)
+        self.comprobar.setObjectName("comprobar")
+        self.gridLayout.addWidget(self.comprobar, 11, 0, 1, 1)
         self.guardar = QtWidgets.QPushButton(self.centralwidget)
         self.guardar.setEnabled(False)
         self.guardar.setObjectName("guardar")
-        self.gridLayout.addWidget(self.guardar, 10, 1, 1, 1)
+        self.gridLayout.addWidget(self.guardar, 11, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -91,23 +95,23 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Metodo Gauss Jordan"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Solución ecuaciones lineales"))
         self.label.setToolTip(_translate("MainWindow", "<html><head/><body><p>Metodo</p></body></html>"))
         self.label.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Metodo</span></p></body></html>"))
         self.label.setText(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Metodo</span></p></body></html>"))
-        self.label_4.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Procedimiento</span></p></body></html>"))
-        self.gaussjordan.setText(_translate("MainWindow", "Gauss_Jordan"))
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600; color:#ff3c00;\">Metodo</span></p></body></html>"))
+        self.label_4.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff3c00;\">Procedimiento</span></p></body></html>"))
+        self.gaussjordan.setText(_translate("MainWindow", "Gauss-Jordan"))
         self.textproceso.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.5pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.otrometodo.setText(_translate("MainWindow", "Gauss"))
-        self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Dimension</span></p></body></html>"))
+        self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff3c00;\">Dimension</span></p></body></html>"))
         self.comboBox.setItemText(0, _translate("MainWindow", "2x2"))
         self.comboBox.setItemText(1, _translate("MainWindow", "3x3"))
         self.comboBox.setItemText(2, _translate("MainWindow", "4x4"))
@@ -118,7 +122,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Sistema de Ecuaciones</span></p></body></html>"))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600; color:#ff3c00;\">Sistema de Ecuaciones</span></p></body></html>"))
         self.textecuaciones.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -126,7 +130,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.graficar.setToolTip(_translate("MainWindow", "Graficar ecuaciones 2x2 o 3x3"))
         self.graficar.setText(_translate("MainWindow", "Graficar"))
-        self.label_5.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Solucion</span></p></body></html>"))
+        self.label_5.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff3c00;\">Solucion</span></p></body></html>"))
         self.textsolucion.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -134,8 +138,10 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.guardar.setToolTip(_translate("MainWindow", "Guarde el proceso obtenido"))
         self.guardar.setText(_translate("MainWindow", "Guardar"))
+        self.comprobar.setToolTip(_translate("MainWindow", "compruebe la solucion obtenida"))
+        self.comprobar.setText(_translate("MainWindow", "Comprobar"))
 
-
+"""
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -143,4 +149,4 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())"""

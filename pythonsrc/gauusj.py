@@ -3,9 +3,10 @@
 [1,2,3,4,5,6,3,3,3,3,3,3] 3x3  """
 import numpy as np
 
-def pedirVal(orden):
+"""def pedirVal(orden):
     for i in range(orden):
-        lista.append(int(input("Valor :"+str(i+1)+" ")))
+        lista.append(int(input("Valor :"+str(i+1)+" ")))"""
+        
 def lista_inicial(lista,metodo):#Si esta en true es Gauus Jordan
     longitud=len(lista)
     if(longitud==6):
@@ -176,6 +177,7 @@ def gaussJordan2(matriz, vector):
                 solucion+="\nLuego de la operación: "+str(a[i,j])
             b[i]-=factor*b[k]
     return b,a,solucion
+    
 def gaussJordan(matriz, vector):
     solucion=""
     matrix = np.array(matriz, dtype=np.float64)
